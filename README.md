@@ -1,24 +1,26 @@
-# Alchemy University Coding Bootcamp Repository
+# Gift List
 
-This repository contains all of Zeuduber's solutions to exercises and week projects from the coding bootcamp at Alchemy University. Here you will find a record of my progress throughout the program.
+To get started with the repository, clone it and then run `npm install` in the top-level directory to install the depedencies.
 
-## Table of Contents
+There are three folders in this repository:
 
-- Week 1
-- Week 2
-- Week 3
-- Week 4
-- Week 5
-- Week 6
-- Week 7
-- Week 8
+## Client
 
-Each week's directory contains the solutions to the exercises and week projects for that week. The code is organized by day and exercise/project.
+You can run the client from the top-level directory with `node client/index`. This file is a script which will send an HTTP request to the server.
 
-## About Alchemy University
+Think of the client as the _prover_ here. It needs to prove to the server that some `name` is in the `MERKLE_ROOT` on the server. 
 
-Alchemy University's coding bootcamp is an intensive program designed to teach students the skills needed to become proficient software developers. The program covers a wide range of topics, including JavaScript, Solidity and various web3 development fundamentals .
+## Server
 
-## Contact
+You can run the server from the top-level directory with `node server/index`. This file is an express server which will be hosted on port 1225 and respond to the client's request.
 
-If you have any questions about the code or the bootcamp in general, please feel free to contact me at mark.zeuduber@gmail.com.
+Think of the server as the _verifier_ here. It needs to verify that the `name` passed by the client is in the `MERKLE_ROOT`. If it is, then we can send the gift! 
+
+## Utils
+
+There are a few files in utils:
+
+- The `niceList.json` which contains all the names of the people who deserve a gift this year (this is randomly generated, feel free to add yourself and others to this list!)
+- The `example.js` script shows how we can generate a root, generate a proof and verify that some value is in the root using the proof. Try it out from the top-level folder with `node/example.js`
+- The `MerkleTree.js` should look familiar from the Merkle Tree module! This one has been modified so you should not have to deal with any crypto type conversion. You can import this in your client/server
+- The `verifyProof.js` should also look familiar. This was the last stage in the module. You can use this function to prove a name is in the merkle root, as show in the example.
